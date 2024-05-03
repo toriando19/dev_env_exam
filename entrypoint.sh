@@ -1,5 +1,4 @@
- #!/bin/sh                                                                   
-  1                                                                             
-  2 echo "starting entrypoint script"                                           
-  3 python coffee_shop.py                                                       
-~                           
+#!/bin/sh
+
+echo "starting entrypoint script"  
+python coffee_shop.py 
