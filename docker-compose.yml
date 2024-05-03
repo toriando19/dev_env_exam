@@ -1,0 +1,31 @@
+ version: '3'  #ren informativ, bruges ikke til noget rigtigt                
+  1                                                                             
+  2 services:                                                                   
+  3                                                                             
+  4   nginx:  # snakker direkte ud mod internet, kan håndtere certifikater          (caching)                                                                   
+  5    image: nginx:latest                                                      
+  6    ports:                                                                   
+  7      - 8000:80                                                              
+  8                                                                             
+  9   db:                                                                       
+ 10     image: postgres:13-alpine                                               
+ 11     volumes:                                                                
+ 12       - postgres_data:/var/lib/postgresql/data/                             
+ 13       - ./dbscripts/:/dbscripts/                                            
+ 14     env_file:                                                               
+ 15       - env                                                                 
+ 16                                                                             
+ 17   app:                                                                      
+ 18     image: coffee_shop:latest                                               
+ 19     volumes:                                                                
+ 20       - .:/app/                                                             
+ 21     env_file:                                                               
+ 22       - env                                                                 
+ 23     ports:                                                                  
+ 24       - 4000:8000                                                           
+ 25     depends_on:                                                             
+ 26       - db                                                                  
+ 27                                                                             
+ 28 volumes:                                                                    
+ 29   postgres_data:                                                            
+ 30                   
