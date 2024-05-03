@@ -1,15 +1,15 @@
 stages:                                                                     
-  7   - static                                                                  
-  6                                                                             
-  5 static:                                                                     
-  4   stage: static                                                             
-  3   image: python:3.10-alpine                                                 
-  2   before_script:                                                            
-  1     - pip install -r sqa-requirements.txt                                   
-9       - apk update && apk add shellcheck                                      
-  1   script:                                                                   
-  2     - pylama .                                                              
-  3     - djlint .                                                              
-  4     - pip-audit                                                             
-  5     - yamllint *.yml                                                        
-  6     - shellcheck *.sh  
+  - static                                                                  
+                                                                            
+static:                                                                     
+  stage: static                                                             
+  image: python:3.10-alpine                                                 
+  before_script:                                                            
+    - pip install -r sqa-requirements.txt                                   
+    - apk update && apk add shellcheck                                      
+  script:                                                                   
+    - pylama .                                                              
+    - djlint .                                                              
+    - pip-audit                                                             
+    - yamllint *.yml                                                        
+    - shellcheck *.sh  
